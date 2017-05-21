@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Create
+  form.form-horizontal(id='create-track', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='name') Description
+      .col-sm-7
+        input.form-control(type='name', name='name', id='name', placeholder='Name', autofocus, required)
+    .form-group
+      label.col-sm-3.control-label(for='date') Date
+      .col-sm-7
+        input.form-control(type='date', name='date', id='date', placeholder='Date', required)
+    .form-group
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        button.btn.btn-success(type='submit')
+          i.fa.fa-user-plus
+          | Create
