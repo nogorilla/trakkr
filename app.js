@@ -220,7 +220,7 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
 /**
  * Tracks routes
  */
-app.get('/tracks/create', passportConfig.isAuthenticated, trackController.getCreate);
+app.get('/trackr/create', passportConfig.isAuthenticated, trackController.getCreate);
 
 /**
 
