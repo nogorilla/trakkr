@@ -6,13 +6,13 @@ block content
   form.form-horizontal(id='create-track', method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
-      label.col-sm-3.control-label(for='name') Description
+      label.col-sm-3.control-label(for='description') Description
       .col-sm-7
-        input.form-control(type='name', name='name', id='name', placeholder='Name', autofocus, required)
+        input.form-control(type='test', name='description', id='description', placeholder='Description', autofocus, required)
     .form-group
       label.col-sm-3.control-label(for='date') Date
       .col-sm-7
-        input.form-control(type='date', name='date', id='date', placeholder='Date', required)
+        input.form-control(type='date', name='date', id='date', placeholder='Date')
     .form-group
     .form-group
       .col-sm-offset-3.col-sm-7

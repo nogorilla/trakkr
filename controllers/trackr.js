@@ -1,9 +1,9 @@
 const User = require('../models/User');
-const Task = require('../models/Trackr');
+const Trackr = require('../models/Trackr');
+const moment = require('moment');
 
-
-exports.getTracks = (req, res) => {
-  res.render('tracks/list', {
+exports.getTrackrs = (req, res) => {
+  res.render('trackrs/list', {
     title: 'Tracking'
   });
 };
@@ -12,25 +12,30 @@ exports.getCreate = (req, res) => {
   if (!req.user) {
     return res.redirect('/');
   }
-  res.render('tracks/create', {
-    title: 'Create Track'
+  res.render('trackrs/new', {
+    title: 'New Trackr'
   });
 };
 
-exports.postCreate = (req, res) => {
+exports.postCreate = (req, res, next) => {
   req.assert('description', 'Please provide a description').notEmpty();
 
   const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
-    return res.redirect('tracks/create');
+    return res.redirect('/trackr/new');
   }
 
+  let date = new Date(req.body.date)
+  if (date === 'Invalid Date') {
+    date = new Date();
+  }
+  
   const task = new Trackr({
     description: req.body.description,
-    date: req.body.date
-  });
+    date: date
+  }).save();
 
   res.redirect('/');
 };
