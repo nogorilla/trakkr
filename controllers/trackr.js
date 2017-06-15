@@ -3,8 +3,15 @@ const Trackr = require('../models/Trackr');
 const moment = require('moment');
 
 exports.getTrackrs = (req, res) => {
-  res.render('trackrs/list', {
-    title: 'Tracking'
+
+  let tracks = Trackr.find({}, function(err, trackrs) {
+    res.render('trackrs/list', {
+      tracks: trackrs.reduce(function(trackrMap, trackr) {
+        trackrMap[trackr.id] = trackr;
+        return trackrMap;
+      }, {}),
+      'title': 'Tracking'
+    });
   });
 };
 
@@ -31,7 +38,7 @@ exports.postCreate = (req, res, next) => {
   if (date === 'Invalid Date') {
     date = new Date();
   }
-  
+
   const task = new Trackr({
     description: req.body.description,
     date: date
