@@ -13,6 +13,9 @@
       ul.nav.navbar-nav
         li(class=(title == 'Home') ? 'active' : undefined)
           a(href='/') Home
+        if user
+          li(class=(title == 'Tracking') ? 'active' : undefined)
+            a(href='/trackr') Trackr
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)
