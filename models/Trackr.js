@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const trackrSchema = new mongoose.Schema({
   description: {
@@ -14,6 +15,13 @@ const trackrSchema = new mongoose.Schema({
     required: true
   },
 }, { timestamps: true });
+
+trackrSchema.methods.formatted_date = function formatted_date(format) {
+  if (!format) {
+    format = "dddd, MMMM Do YYYY";
+  }
+  return moment(this.date).format(format);
+}
 
 const Trackr = mongoose.model('Trackr', trackrSchema);
 

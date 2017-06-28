@@ -5,4 +5,4 @@ block content
     h3 List
     ul
       each track, index in tracks
-        li= track.date + ': ' + track.description 
+        li= track.formatted_date() + ': ' + track.description 
