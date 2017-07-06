@@ -20,7 +20,7 @@ trackrSchema.methods.formatted_date = function formatted_date(format) {
   if (!format) {
     format = "dddd, MMMM Do YYYY";
   }
-  return moment(this.date).format(format);
+  return moment.utc(this.date).format(format);
 }
 
 const Trackr = mongoose.model('Trackr', trackrSchema);
