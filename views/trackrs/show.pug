@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Trackr
+    ul
+      li
+        span Date 
+        | #{trackr.formatted_date()}
+      li
+        span Description 
+        | #{trackr.description}

@@ -5,4 +5,5 @@ block content
     h3 List
     ul
       each track, index in tracks
-        li= track.formatted_date() + ': ' + track.description 
+        li
+          a(href="/trackr/" + track._id) #{track.formatted_date()} : #{track.description} 

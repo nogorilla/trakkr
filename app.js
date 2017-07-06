@@ -188,10 +188,13 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
 /**
  * Tracks routes
  */
-app.get('/trackr/new', passportConfig.isAuthenticated, trackrController.getCreate);
 app.get('/trackr', passportConfig.isAuthenticated, trackrController.getTrackrs);
+app.get('/trackr/new', passportConfig.isAuthenticated, trackrController.getCreate);
 app.post('/trackr/new', passportConfig.isAuthenticated, trackrController.postCreate);
-
+app.get('/trackr/:id', passportConfig.isAuthenticated, trackrController.showTrackr);
+app.get('/trackr/:id/edit', passportConfig.isAuthenticated, trackrController.editTrackr);
+app.post('/trackr/:id/edit', passportConfig.isAuthenticated, trackrController.updateTrackr);
+app.post('/trackr/:id/delete', passportConfig.isAuthenticated, trackrController.deleteTrackr);
 /**
 
 /**

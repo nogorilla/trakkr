@@ -47,5 +47,57 @@ exports.postCreate = (req, res, next) => {
     date: date
   }).save();
 
-  res.redirect('/');
+  res.redirect('/trackr');
+};
+
+exports.showTrackr = (req, res) => {
+  if (!req.user) {
+    return res.redirect('/');
+  }
+  Trackr.findOne({ _id: req.params.id }, (err, trackr) => {
+    if (err) { return next(err); }
+    res.render('trackrs/show', {
+      title: 'Trackr',
+      trackr: trackr
+    })
+  });
+};
+
+exports.editTrackr = (req, res) => {
+  if (!req.user) {
+    return res.redirect('/');
+  }
+  Trackr.findOne({ _id: req.params.id }, (err, trackr) => {
+    if (err) { return next(err); }
+    res.render('trackrs/edit', {
+      title: 'Edit Trackr',
+      trackr: trackr
+    })
+  });
+};
+
+exports.updateTrackr = (req, res) => {
+  req.assert('description', 'Please provide a description').notEmpty();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect(`/trackr/${trackr._id}/edit`);
+  }
+
+  Trackr.findOneAndUpdate({ _id: req.params.id }, req.body, (err, trackr) => {
+    if (err) { return next(err); }
+
+    return res.redirect(`/trackr/${trackr._id}/edit`);
+  });
+
+};
+
+exports.deleteTrackr = (reg, res) => {
+  if (!req.user) {
+    return res.redirect('/');
+  }
+
+
 };
