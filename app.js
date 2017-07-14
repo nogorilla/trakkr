@@ -194,7 +194,7 @@ app.post('/trackr/new', passportConfig.isAuthenticated, trackrController.postCre
 app.get('/trackr/:id', passportConfig.isAuthenticated, trackrController.showTrackr);
 app.get('/trackr/:id/edit', passportConfig.isAuthenticated, trackrController.editTrackr);
 app.post('/trackr/:id/edit', passportConfig.isAuthenticated, trackrController.updateTrackr);
-app.post('/trackr/:id/delete', passportConfig.isAuthenticated, trackrController.deleteTrackr);
+app.post('/trackr/:id', passportConfig.isAuthenticated, trackrController.deleteTrackr);
 /**
 
 /**

@@ -94,10 +94,23 @@ exports.updateTrackr = (req, res) => {
 
 };
 
-exports.deleteTrackr = (reg, res) => {
+exports.deleteTrackr = (req, res) => {
   if (!req.user) {
-    return res.redirect('/');
+    req.flash('errors', errors);
+    return res.redirect(`/trackr/${req.params.id}/edit`);
   }
 
+  req.flash('message', 'Trackr deleted');
+  console.log('trackr deleted', req.params.id)
+  return res.redirect('/trackr/');
 
+  Trackr.findOneAndRemove({ _id: req.params.id }, req.body, (err, trackr) => {
+    if (err) {
+      req.flash('errors', err);
+      return res.redirect(`/trackr/${req.params.id}/edit`);
+    }
+
+    req.flash('message', 'Trackr deleted');
+    return res.redirect('/trackr/');
+  });
 };

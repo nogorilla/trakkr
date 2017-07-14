@@ -10,3 +10,8 @@ block content
       li
         span Description 
         | #{trackr.description}
+      li
+        form.form-horizontal(id='delete-trackr', method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          button(id='delete-trackr' data-id=trackr._id)
+            i.fa.fa-remove
