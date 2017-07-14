@@ -56,10 +56,15 @@ exports.showTrackr = (req, res) => {
   }
   Trackr.findOne({ _id: req.params.id }, (err, trackr) => {
     if (err) { return next(err); }
-    res.render('trackrs/show', {
-      title: 'Trackr',
-      trackr: trackr
-    })
+    if (trackr !== null) {
+      res.render('trackrs/show', {
+        title: 'Trackr',
+        trackr: trackr
+      });
+    } else {
+      res.render('404', { status: 404, url: req.url, title: 'Not Found' });
+    }
+    
   });
 };
 
