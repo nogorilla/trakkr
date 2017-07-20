@@ -5,11 +5,9 @@ block content
     div(class='col-md-6')
       h2 Latest
       ul
-        li Latest Trackrs
-        li Latest Trackrs
-        li Latest Trackrs
-        li Latest Trackrs
-        li Latest Trackrs
+      each track, index in trackrs
+        li
+          a(href="/trackr/" + track._id) #{track.formatted_date()} : #{track.description} 
     div(class='col-md-6')
       h2 Quick Create
       form.form-horizontal(id='create-track', method='POST' action='/trackr/new')
