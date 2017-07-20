@@ -11,6 +11,9 @@ block content
         span Description 
         | #{trackr.description}
       li
+        a(href="/trackr/" + trackr._id + '/edit') 
+          i.fa.fa-edit  
+      li
         form.form-horizontal(id='delete-trackr', method='POST')
           input(type='hidden', name='_csrf', value=_csrf)
           button(id='delete-trackr' data-id=trackr._id)

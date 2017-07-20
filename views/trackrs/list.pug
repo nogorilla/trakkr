@@ -4,6 +4,6 @@ block content
   .page-header
     h3 List
     ul
-      each track, index in tracks
+      each trackr, index in trackrs
         li
-          a(href="/trackr/" + track._id) #{track.formatted_date()} : #{track.description} 
+          a(href="/trackr/" + trackr._id) #{trackr.formatted_date()} : #{trackr.description} 

@@ -6,9 +6,9 @@ exports.getTrackrs = (req, res) => {
   if (!req.user) {
     return res.redirect('/');
   }
-  Trackr.find({created_by: req.user.id}, function(err, trackrs) {
+  Trackr.find({created_by: req.user.id}, (err, trackrs) => {
     res.render('trackrs/list', {
-      tracks: trackrs.reduce(function(trackrMap, trackr) {
+      trackrs: trackrs.reduce((trackrMap, trackr) => {
         trackrMap[trackr.id] = trackr;
         return trackrMap;
       }, {}),
