@@ -8,14 +8,14 @@
         span.icon-bar
       a.navbar-brand(href='/')
         i.fa.fa-cube
-        | Trackr
+        | Trakkr
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         li(class=(title == 'Home') ? 'active' : undefined)
           a(href='/') Home
         if user
           li(class=(title == 'Tracking') ? 'active' : undefined)
-            a(href='/trackr') Trackr
+            a(href='/trakkr') Trakkr
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)

@@ -1,21 +1,21 @@
-const Trackr = require('../models/Trackr');
+const Trakkr = require('../models/Trakkr');
 const moment = require('moment');
 
 exports.index = (req, res) => {
   let view  = 'landing'
       title = 'Welcome',
-      trackrs = null;
+      trakkrs = null;
 
   if (req.user) {
     view = 'home';
-    title = 'Trackr';
-    Trackr.find({created_by: req.user.id}, (err, trackrs) => {
+    title = 'Trakkr';
+    Trakkr.find({created_by: req.user.id}, (err, trakkrs) => {
       res.render(view, {
-        trackrs: trackrs.reduce((trackrMap, trackr) => {
-          if (moment(trackr.date).get('month') === moment().get('month')) {
-            trackrMap[trackr.id] = trackr;
+        trakkrs: trakkrs.reduce((trakkrMap, trakkr) => {
+          if (moment(trakkr.date).get('month') === moment().get('month')) {
+            trakkrMap[trakkr.id] = trakkr;
           }
-          return trackrMap;
+          return trakkrMap;
         }, {}),
         'title': title
       });

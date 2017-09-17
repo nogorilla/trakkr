@@ -1,28 +1,24 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 
-const trackrSchema = new mongoose.Schema({
+const trakkrSchema = new mongoose.Schema({
   description: {
     type: String,
     require: [true, 'Description is required.']
   },
-  date: {
-    type: Date,
-    default: Date.now()
-  },
-  created_by: {
+  createdBy: {
     type: String,
     required: true
   },
 }, { timestamps: true });
 
-trackrSchema.methods.formatted_date = function formatted_date(format) {
+trakkrSchema.methods.formatted_date = function formatted_date(format) {
   if (!format) {
     format = "dddd, MMMM Do YYYY";
   }
   return moment.utc(this.date).format(format);
 }
 
-const Trackr = mongoose.model('Trackr', trackrSchema);
+const Trakkr = mongoose.model('Trakkr', trakkrSchema);
 
-module.exports = Trackr;
+module.exports = Trakkr;

@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 List
+    ul
+      each trakkr, index in trakkrs
+        li
+          a(href="/trakkr/" + trakkr._id) #{trakkr.description} 
