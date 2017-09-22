@@ -1,26 +1,21 @@
 extends layout
 
 block content
-    h1 Welcome to Trackr
+    h1 Welcome to Trakkr
     div(class='col-md-6')
       h2 Latest
       ul
-      each track, index in trackrs
+      each track, index in trakkrs
         li
-          a(href="/trackr/" + track._id) #{track.formatted_date()} : #{track.description} 
+          a(href="/trakkr/" + track._id) #{track.formatted_date()} : #{track.description} 
     div(class='col-md-6')
       h2 Quick Create
-      form.form-horizontal(id='create-track', method='POST' action='/trackr/new')
+      form.form-horizontal(id='create-track', method='POST' action='/trakkr/new')
         input(type='hidden', name='_csrf', value=_csrf)
         .form-group
           label.col-sm-3.control-label(for='description') Description
           .col-sm-7
             input.form-control(type='test', name='description', id='description', placeholder='Description', autofocus, required)
-        .form-group
-          label.col-sm-3.control-label(for='date') Date
-          .col-sm-7
-            input.form-control(type='date', name='date', id='date', placeholder='Date')
-        .form-group
         .form-group
           .col-sm-offset-3.col-sm-7
             button.btn.btn-success(type='submit')

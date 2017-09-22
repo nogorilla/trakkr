@@ -1,9 +1,0 @@
-extends ../layout
-
-block content
-  .page-header
-    h3 List
-    ul
-      each trackr, index in trackrs
-        li
-          a(href="/trackr/" + trackr._id) #{trackr.formatted_date()} : #{trackr.description} 

@@ -22,7 +22,7 @@ const sass = require('node-sass-middleware');
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.load({ path: '.env.example' });
+dotenv.load({ path: '.env' });
 
 /**
  * Controllers (route handlers).
@@ -30,7 +30,7 @@ dotenv.load({ path: '.env.example' });
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const contactController = require('./controllers/contact');
-const trackrController = require('./controllers/trackr');
+const trakkrController = require('./controllers/trakkr');
 
 /**
  * API keys and Passport configuration.
@@ -151,13 +151,13 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
 /**
  * Tracks routes
  */
-app.get('/trackr', passportConfig.isAuthenticated, trackrController.getTrackrs);
-app.get('/trackr/new', passportConfig.isAuthenticated, trackrController.getCreate);
-app.post('/trackr/new', passportConfig.isAuthenticated, trackrController.postCreate);
-app.get('/trackr/:id', passportConfig.isAuthenticated, trackrController.showTrackr);
-app.get('/trackr/:id/edit', passportConfig.isAuthenticated, trackrController.editTrackr);
-app.post('/trackr/:id/edit', passportConfig.isAuthenticated, trackrController.updateTrackr);
-app.post('/trackr/:id', passportConfig.isAuthenticated, trackrController.deleteTrackr);
+app.get('/trakkr', passportConfig.isAuthenticated, trakkrController.getTrakkrs);
+app.get('/trakkr/new', passportConfig.isAuthenticated, trakkrController.getCreate);
+app.post('/trakkr/new', passportConfig.isAuthenticated, trakkrController.postCreate);
+app.get('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.showTrakkr);
+app.get('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.editTrakkr);
+app.post('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.updateTrakkr);
+app.post('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.deleteTrakkr);
 /**
 
 /**
