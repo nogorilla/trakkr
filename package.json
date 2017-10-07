@@ -1,6 +1,6 @@
 {
   "name": "trakkr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Track reoccuring events",
   "repository": {
     "type": "git",
@@ -63,6 +63,7 @@
     "validator": "^7.0.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.1",
     "chai": "^3.5.0",
     "eslint": "^3.9.1",
     "eslint-config-airbnb-base": "^11.0.0",
