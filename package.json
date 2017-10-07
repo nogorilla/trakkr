@@ -9,7 +9,7 @@
   "author": "Gabriel Smith",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "nodemon src/app.js",
     "test": "mocha --reporter spec",
     "postinstall": "npm rebuild node-sass"
   },
