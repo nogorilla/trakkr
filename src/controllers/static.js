@@ -2,13 +2,13 @@ const Trakkr = require('../models/Trakkr');
 const moment = require('moment');
 
 exports.index = (req, res) => {
-  let view  = 'landing'
-      title = 'Welcome',
-      trakkrs = null;
+  let view  = 'landing';
+  let title = 'Welcome';
+  let trakkrs = null;
 
   if (req.user) {
-    view = 'home';
-    title = 'Trakkr';
+    const view  = 'home';
+    const title = 'Trakkr';
     Trakkr.find({created_by: req.user.id}, (err, trakkrs) => {
       res.render(view, {
         trakkrs: trakkrs.reduce((trakkrMap, trakkr) => {
