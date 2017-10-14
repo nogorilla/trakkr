@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const trakkrSchema = new mongoose.Schema({
   name: {
@@ -8,7 +9,7 @@ const trakkrSchema = new mongoose.Schema({
   color: {
     type: String,
     require: [true, 'Color is required']
-  },
+  }
 }, { timestamps: true });
 
 /**
@@ -16,10 +17,10 @@ const trakkrSchema = new mongoose.Schema({
  */
 trakkrSchema.methods.formatted_date = function formatted_date(format) {
   if (!format) {
-    format = "dddd, MMMM Do YYYY";
+    format = 'dddd, MMMM Do YYYY';
   }
   return moment.utc(this.date).format(format);
-}
+};
 
 const Trakkr = mongoose.model('Trakkr', trakkrSchema);
 module.exports = Trakkr;

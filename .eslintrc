@@ -22,7 +22,11 @@
     "no-else-return": [ 2 ],
     "no-eval": [ 2 ],
     "no-mixed-spaces-and-tabs": [ 2 ],
-    "no-multi-spaces": [ 2 ],
+    "no-multi-spaces": [1, {
+      "exceptions": {
+          "VariableDeclarator": true
+      }
+    }],
     "no-spaced-func": [ 2 ],
     "no-trailing-spaces": [ 2 ],
     "no-unused-vars": [ 2 ],

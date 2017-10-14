@@ -1,6 +1,5 @@
 const User = require('../models/User');
 const Trakkr = require('../models/Trakkr');
-const moment = require('moment');
 
 exports.getTrakkrs = (req, res) => {
   if (!req.user) {
@@ -26,7 +25,7 @@ exports.getCreate = (req, res) => {
   });
 };
 
-exports.postCreate = (req, res, next) => {
+exports.postCreate = (req, res) => {
   req.assert('description', 'Please provide a description').notEmpty();
 
   const errors = req.validationErrors();
@@ -36,10 +35,9 @@ exports.postCreate = (req, res, next) => {
     return res.redirect('/trakkr/new');
   }
 
-  const task = new Trakkr({
+  new Trakkr({
     description: req.body.description,
-    created_by: req.user.id,
-    date: date
+    createdBy: req.user.id
   }).save();
 
   res.redirect('/trakkr');
@@ -59,7 +57,7 @@ exports.showTrakkr = (req, res) => {
     } else {
       res.render('404', { status: 404, url: req.url, title: 'Not Found' });
     }
-    
+
   });
 };
 
@@ -83,7 +81,7 @@ exports.updateTrakkr = (req, res) => {
 
   if (errors) {
     req.flash('errors', errors);
-    return res.redirect(`/trakkr/${trakkr._id}/edit`);
+    return res.redirect(`/trakkr/${req.params.id}/edit`);
   }
 
   Trakkr.findOneAndUpdate({ _id: req.params.id }, req.body, (err, trakkr) => {
@@ -95,14 +93,10 @@ exports.updateTrakkr = (req, res) => {
 };
 
 exports.deleteTrakkr = (req, res) => {
-  if (!req.user) {
-    req.flash('errors', errors);
-    return res.redirect(`/trakkr/${req.params.id}/edit`);
-  }
 
   req.flash('message', 'Trakkr deleted');
-  console.log('trakkr deleted', req.params.id)
-  return res.redirect('/trakkr/');
+  console.log('trakkr deleted', req.params.id);
+  // return res.redirect('/trakkr/');
 
   Trakkr.findOneAndRemove({ _id: req.params.id }, req.body, (err, trakkr) => {
     if (err) {
