@@ -31,6 +31,7 @@ const staticController = require('./controllers/static');
 const userController = require('./controllers/user');
 const contactController = require('./controllers/contact');
 const trakkrController = require('./controllers/trakkr');
+const okkursController = require('./controllers/okkurs');
 
 /**
  * API keys and Passport configuration.
@@ -49,7 +50,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 mongoose.connection.on('error', (err) => {
   console.error(err);
-  console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
+  console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chaclk.red('✗'));
   process.exit();
 });
 
@@ -149,7 +150,7 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
 });
 
 /**
- * Tracks routes
+ * Trakkr routes
  */
 app.get('/trakkr', passportConfig.isAuthenticated, trakkrController.getTrakkrs);
 app.get('/trakkr/new', passportConfig.isAuthenticated, trakkrController.getCreate);
@@ -159,6 +160,10 @@ app.get('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.edi
 app.post('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.updateTrakkr);
 app.post('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.deleteTrakkr);
 /**
+ * Okkurs routes
+ */
+app.get('/trakkr/:trakkr_id/okkurs/new', passportConfig.isAuthenticated, okkursController.getCreate);
+app.post('/trakkr/:trakkr_id/okkurs/new', passportConfig.isAuthenticated, okkursController.postCreate);
 
 /**
  * Error Handler.
@@ -169,7 +174,7 @@ app.use(errorHandler());
  * Start Express server.
  */
 app.listen(app.get('port'), () => {
-  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); 
+  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
   console.log('  Press CTRL-C to stop\n');
 });
 

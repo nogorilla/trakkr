@@ -3,16 +3,15 @@ extends ../layout
 block content
   .page-header
     h3 Trakkr
+    a(href=`/trakkr/${trakkr._id}/okkurs/new`)
+      i.fa.fa-plus &nbsp;
     ul
       li
-        span Date 
-        | #{trakkr.formatted_date()}
-      li
-        span Description 
+        span Description:&nbsp;
         | #{trakkr.description}
       li
-        a(href="/trakkr/" + trakkr._id + '/edit') 
-          i.fa.fa-edit  
+        a(href=`/trakkr/${trakkr._id}/edit`)
+          i.fa.fa-edit
       li
         form.form-horizontal(id='delete-trakkr', method='POST')
           input(type='hidden', name='_csrf', value=_csrf)

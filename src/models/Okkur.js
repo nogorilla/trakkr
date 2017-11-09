@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
+const Schema = mongoose.Schema;
 
 const okkursSchema = new mongoose.Schema({
   description: {
@@ -10,19 +11,17 @@ const okkursSchema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-  createdBy: {
-    type: String,
-    required: true
-  },
+  trakkr: {type: Schema.Types.ObjectId, ref: 'Trakkr'},
+  createdBy: {type: Schema.Types.ObjectId, ref: 'User'}
 }, { timestamps: true });
 
 okkursSchema.methods.formatted_date = function formatted_date(format) {
   if (!format) {
-    format = "dddd, MMMM Do YYYY";
+    format = 'dddd, MMMM Do YYYY';
   }
   return moment.utc(this.date).format(format);
-}
+};
 
-const Okkurs = mongoose.model('Okkurs', okkursSchema);
+const Okkur = mongoose.model('Okkur', okkursSchema);
 
-module.exports = Okkurs;
+module.exports = Okkur;
