@@ -1,22 +1,16 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
+const Okkur = require('./Okkur');
 const Schema = mongoose.Schema;
 
-const trakkrSchema = new mongoose.Schema({
+const trakkrSchema = new Schema({
   description: {
     type: String,
     require: [true, 'Description is required.']
   },
-  createdBy: {type: Schema.Types.ObjectId, ref: 'User'}
+  createdBy: {type: Schema.Types.ObjectId, ref: 'User'},
+  children: [Okkur.schema]
 }, { timestamps: true });
-
-trakkrSchema.methods.formatted_date = function formatted_date(format) {
-  if (!format) {
-    format = 'dddd, MMMM Do YYYY';
-  }
-  console.log(this);
-  return moment.utc(this.date).format(format);
-};
 
 const Trakkr = mongoose.model('Trakkr', trakkrSchema);
 
