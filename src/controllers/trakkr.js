@@ -43,7 +43,7 @@ exports.postCreate = (req, res) => {
   res.redirect('/trakkr');
 };
 
-exports.showTrakkr = (req, res) => {
+exports.showTrakkr = (req, res, next) => {
   if (!req.user) {
     return res.redirect('/');
   }
@@ -52,7 +52,8 @@ exports.showTrakkr = (req, res) => {
     if (trakkr !== null) {
       res.render('trakkrs/show', {
         title: 'Trakkr',
-        trakkr: trakkr
+        trakkr: trakkr,
+        okkurs: trakkr.children
       });
     } else {
       res.render('404', { status: 404, url: req.url, title: 'Not Found' });
@@ -61,7 +62,7 @@ exports.showTrakkr = (req, res) => {
   });
 };
 
-exports.editTrakkr = (req, res) => {
+exports.editTrakkr = (req, res, next) => {
   if (!req.user) {
     return res.redirect('/');
   }
@@ -74,7 +75,7 @@ exports.editTrakkr = (req, res) => {
   });
 };
 
-exports.updateTrakkr = (req, res) => {
+exports.updateTrakkr = (req, res, next) => {
   req.assert('description', 'Please provide a description').notEmpty();
 
   const errors = req.validationErrors();
