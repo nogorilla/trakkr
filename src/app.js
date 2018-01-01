@@ -152,19 +152,23 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
 /**
  * Trakkr routes
  */
-app.get('/trakkr', passportConfig.isAuthenticated, trakkrController.getTrakkrs);
-app.get('/trakkr/new', passportConfig.isAuthenticated, trakkrController.getCreate);
-app.post('/trakkr/new', passportConfig.isAuthenticated, trakkrController.postCreate);
-app.get('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.showTrakkr);
-app.get('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.editTrakkr);
-app.post('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.updateTrakkr);
-app.post('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.deleteTrakkr);
+app.get('/trakkr', passportConfig.isAuthenticated, trakkrController.index);
+app.get('/trakkr/new', passportConfig.isAuthenticated, trakkrController.get);
+app.post('/trakkr/new', passportConfig.isAuthenticated, trakkrController.create);
+app.get('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.show);
+app.get('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.edit);
+app.post('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.update);
+app.post('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.delete);
 
 /**
  * Okkurs routes
  */
 app.get('/trakkr/:trakkr_id/okkur/new', passportConfig.isAuthenticated, okkursController.new);
 app.post('/trakkr/:trakkr_id/okkur/new', passportConfig.isAuthenticated, okkursController.create);
+app.get('/trakkr/:trakkr_id/okkur/:okkur_id', passportConfig.isAuthenticated, okkursController.show);
+app.get('/trakkr/:trakkr_id/okkur/:okkur_id/edit', passportConfig.isAuthenticated, okkursController.edit);
+app.post('/trakkr/:trakkr_id/okkur/:okkur_id/edit', passportConfig.isAuthenticated, okkursController.update);
+app.post('/trakkr/:trakkr_id/okkur/:okkur_id', passportConfig.isAuthenticated, okkursController.delete);
 
 /**
  * Error Handler.

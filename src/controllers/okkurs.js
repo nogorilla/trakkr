@@ -40,7 +40,7 @@ exports.create = (req, res, next) => {
   });
 };
 
-exports.showTrakkr = (req, res, next) => {
+exports.show = (req, res, next) => {
   if (!req.user) {
     return res.redirect('/');
   }
@@ -58,7 +58,7 @@ exports.showTrakkr = (req, res, next) => {
   });
 };
 
-exports.editTrakkr = (req, res, next) => {
+exports.edit = (req, res, next) => {
   if (!req.user) {
     return res.redirect('/');
   }
@@ -71,7 +71,7 @@ exports.editTrakkr = (req, res, next) => {
   });
 };
 
-exports.updateTrakkr = (req, res, next) => {
+exports.update = (req, res, next) => {
   req.assert('description', 'Please provide a description').notEmpty();
 
   const errors = req.validationErrors();
@@ -89,7 +89,7 @@ exports.updateTrakkr = (req, res, next) => {
 
 };
 
-exports.deleteTrakkr = (req, res) => {
+exports.delete = (req, res) => {
 
   req.flash('message', 'Trakkr deleted');
   console.log('trakkr deleted', req.params.id);
