@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
 const Okkur = require('./Okkur');
 const Schema = mongoose.Schema;
 
@@ -9,7 +8,7 @@ const trakkrSchema = new Schema({
     require: [true, 'Description is required.']
   },
   createdBy: {type: Schema.Types.ObjectId, ref: 'User'},
-  children: [Okkur.schema]
+  okkurs: [Okkur.schema]
 }, { timestamps: true });
 
 const Trakkr = mongoose.model('Trakkr', trakkrSchema);

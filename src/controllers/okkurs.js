@@ -1,16 +1,17 @@
 const Trakkr = require('../models/Trakkr');
 const Okkur = require('../models/Okkur');
 
-exports.getCreate = (req, res) => {
+exports.new = (req, res) => {
   if (!req.user) {
     return res.redirect('/');
   }
+
   res.render('okkurs/new', {
     title: 'New Okkurs'
   });
 };
 
-exports.postCreate = (req, res, next) => {
+exports.create = (req, res, next) => {
   req.assert('description', 'Please provide a description').notEmpty();
 
   const errors = req.validationErrors();
@@ -23,17 +24,15 @@ exports.postCreate = (req, res, next) => {
   Trakkr.findOne({ _id: req.params.trakkr_id }, (err, trakkr) => {
     if (err) { return next(err); }
     if (trakkr !== null) {
-      new Okkur({
+      let okkur = new Okkur({
         description: req.body.description,
-        date: req.body.date,
-        createdBy: req.user.id,
-        trakkr: trakkr.id
-      }).save();
-
-      res.render('trakkrs/show', {
-        title: 'Trakkr',
-        trakkr: trakkr
+        date: req.body.date
       });
+      console.log('okkur: ', okkur);
+      trakkr.okkurs.push(okkur);
+      trakkr.save();
+
+      res.redirect(`/trakkr/${trakkr._id}`);
     } else {
       res.render('404', { status: 404, url: req.url, title: 'Not Found' });
     }

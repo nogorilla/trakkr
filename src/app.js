@@ -159,11 +159,12 @@ app.get('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.showTrak
 app.get('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.editTrakkr);
 app.post('/trakkr/:id/edit', passportConfig.isAuthenticated, trakkrController.updateTrakkr);
 app.post('/trakkr/:id', passportConfig.isAuthenticated, trakkrController.deleteTrakkr);
+
 /**
  * Okkurs routes
  */
-app.get('/trakkr/:trakkr_id/okkurs/new', passportConfig.isAuthenticated, okkursController.getCreate);
-app.post('/trakkr/:trakkr_id/okkurs/new', passportConfig.isAuthenticated, okkursController.postCreate);
+app.get('/trakkr/:trakkr_id/okkur/new', passportConfig.isAuthenticated, okkursController.new);
+app.post('/trakkr/:trakkr_id/okkur/new', passportConfig.isAuthenticated, okkursController.create);
 
 /**
  * Error Handler.

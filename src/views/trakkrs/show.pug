@@ -3,8 +3,6 @@ extends ../layout
 block content
   .page-header
     h3 Trakkr
-    a(href=`/trakkr/${trakkr._id}/okkurs/new`)
-      i.fa.fa-plus &nbsp;
     ul
       li
         span Description:&nbsp;
@@ -13,7 +11,16 @@ block content
         a(href=`/trakkr/${trakkr._id}/edit`)
           i.fa.fa-edit
       li
+        a(href=`/trakkr/${trakkr._id}/okkur/new`)
+          i.fa.fa-plus
+      li
         form.form-horizontal(id='delete-trakkr', method='POST')
           input(type='hidden', name='_csrf', value=_csrf)
           button(id='delete-trakkr' data-id=trakkr._id)
             i.fa.fa-remove
+
+    - if (trakkr.okkurs)
+      h4 Okkurs
+      ul
+        each okkur in trakkr.okkurs
+          li #{okkur.description} :: #{okkur.formatted_date()}

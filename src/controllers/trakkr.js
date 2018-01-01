@@ -52,8 +52,7 @@ exports.showTrakkr = (req, res, next) => {
     if (trakkr !== null) {
       res.render('trakkrs/show', {
         title: 'Trakkr',
-        trakkr: trakkr,
-        okkurs: trakkr.children
+        trakkr: trakkr
       });
     } else {
       res.render('404', { status: 404, url: req.url, title: 'Not Found' });

@@ -10,9 +10,7 @@ const okkursSchema = new Schema({
   date: {
     type: Date,
     default: Date.now()
-  },
-  trakkr: {type: Schema.Types.ObjectId, ref: 'Trakkr'},
-  createdBy: {type: Schema.Types.ObjectId, ref: 'User'}
+  }
 }, { timestamps: true });
 
 okkursSchema.methods.formatted_date = (format) => {
