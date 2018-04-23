@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Edit Okkur
+  form.form-horizontal(id='edit-track', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='description') Description
+      .col-sm-7
+        input.form-control(type='test', name='description', id='description', placeholder='Description', autofocus, required, value=okkur.description)
+    .form-group
+      label.col-sm-3.control-label(for='date') Date
+      .col-sm-7
+        input.form-control(type='date', name='date', id='date', value=okkur.formatted_date('MM/DD/YYYY'))
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        button.btn.btn-success(type='submit')
+          i.fa.fa-user-plus
+          | Update

@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Okkur
+    ul
+      li
+        span Description:&nbsp;
+        | #{okkur.description}
+      li
+        span Date:&nbsp;
+        | #{okkur.formatted_date()}
+      li
+        a(href=`/trakkr/${trakkr._id}/okkur/${okkur._id}/edit`)
+          i.fa.fa-edit
+      li
+        form.form-horizontal(id='delete-trakkr', method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          button(id='delete-trakkr' data-id=trakkr._id)
+            i.fa.fa-remove

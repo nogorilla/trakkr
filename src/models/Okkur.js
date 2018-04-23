@@ -10,7 +10,8 @@ const okkursSchema = new Schema({
   date: {
     type: Date,
     default: Date.now()
-  }
+  },
+  trakkr: { type: Schema.Types.ObjectId, ref: 'Trakkr'}
 }, { timestamps: true });
 
 okkursSchema.methods.formatted_date = (format) => {

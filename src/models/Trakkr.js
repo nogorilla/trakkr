@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Okkur = require('./Okkur');
 const Schema = mongoose.Schema;
 
 const trakkrSchema = new Schema({
@@ -8,7 +7,7 @@ const trakkrSchema = new Schema({
     require: [true, 'Description is required.']
   },
   createdBy: {type: Schema.Types.ObjectId, ref: 'User'},
-  okkurs: [Okkur.schema]
+  okkurs: [{type: Schema.Types.ObjectId, ref: 'Okkur'}]
 }, { timestamps: true });
 
 const Trakkr = mongoose.model('Trakkr', trakkrSchema);

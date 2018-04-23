@@ -5,6 +5,7 @@ exports.index = (req, res) => {
   if (!req.user) {
     return res.redirect('/');
   }
+
   Trakkr.find({createdBy: req.user.id}, (err, trakkrs) => {
     res.render('trakkrs/list', {
       trakkrs: trakkrs.reduce((trakkrMap, trakkr) => {

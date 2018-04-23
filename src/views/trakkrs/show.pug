@@ -20,7 +20,9 @@ block content
             i.fa.fa-remove
 
     - if (trakkr.okkurs)
-      h4 Okkurs
+      h4 Okkurances
       ul
         each okkur in trakkr.okkurs
-          li #{okkur.description} :: #{okkur.formatted_date()}
+          li
+            a(href=`/trakkr/${trakkr._id}/okkur/${okkur.id}`) #{okkur.description}
+            |&nbsp;:: #{okkur.formatted_date()}
